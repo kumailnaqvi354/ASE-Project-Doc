@@ -1,0 +1,30 @@
+### YamlMime:ManagedReference
+items:
+- uid: ASE_Assignment_Demo
+  commentId: N:ASE_Assignment_Demo
+  id: ASE_Assignment_Demo
+  children:
+  - ASE_Assignment_Demo.AppCanvas
+  - ASE_Assignment_Demo.Form1
+  langs:
+  - csharp
+  - vb
+  name: ASE_Assignment_Demo
+  nameWithType: ASE_Assignment_Demo
+  fullName: ASE_Assignment_Demo
+  type: Namespace
+  assemblies:
+  - ASE Assignment Demo
+references:
+- uid: ASE_Assignment_Demo.AppCanvas
+  commentId: T:ASE_Assignment_Demo.AppCanvas
+  href: ASE_Assignment_Demo.AppCanvas.html
+  name: AppCanvas
+  nameWithType: AppCanvas
+  fullName: ASE_Assignment_Demo.AppCanvas
+- uid: ASE_Assignment_Demo.Form1
+  commentId: T:ASE_Assignment_Demo.Form1
+  href: ASE_Assignment_Demo.Form1.html
+  name: Form1
+  nameWithType: Form1
+  fullName: ASE_Assignment_Demo.Form1

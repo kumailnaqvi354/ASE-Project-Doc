@@ -1,0 +1,10 @@
+### YamlMime:TableOfContent
+items:
+- uid: ASE_Assignment_Demo
+  name: ASE_Assignment_Demo
+  items:
+  - uid: ASE_Assignment_Demo.AppCanvas
+    name: AppCanvas
+  - uid: ASE_Assignment_Demo.Form1
+    name: Form1
+memberLayout: SamePage
