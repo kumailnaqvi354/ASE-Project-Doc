@@ -1,0 +1,23 @@
+### YamlMime:ManagedReference
+items:
+- uid: ASE_Assignment_Demo.Factories
+  commentId: N:ASE_Assignment_Demo.Factories
+  id: ASE_Assignment_Demo.Factories
+  children:
+  - ASE_Assignment_Demo.Factories.CommandFactory
+  langs:
+  - csharp
+  - vb
+  name: ASE_Assignment_Demo.Factories
+  nameWithType: ASE_Assignment_Demo.Factories
+  fullName: ASE_Assignment_Demo.Factories
+  type: Namespace
+  assemblies:
+  - ASE Assignment Demo
+references:
+- uid: ASE_Assignment_Demo.Factories.CommandFactory
+  commentId: T:ASE_Assignment_Demo.Factories.CommandFactory
+  href: ASE_Assignment_Demo.Factories.CommandFactory.html
+  name: CommandFactory
+  nameWithType: CommandFactory
+  fullName: ASE_Assignment_Demo.Factories.CommandFactory

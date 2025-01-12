@@ -16,11 +16,11 @@ items:
   type: Class
   source:
     remote:
-      path: ASE Assignment Demo/Form1.Designer.cs
-      branch: main
+      path: ASE Assignment Demo/BOOSEInterpreterUI.Designer.cs
+      branch: variableAndCustomFunctions
       repo: git@github.com:ASE-Classroom/ase-demo-assignment-kumailnaqvi354.git
     id: Form1
-    path: ../ase-demo-assignment-kumailnaqvi354/ASE Assignment Demo/Form1.Designer.cs
+    path: ../ase-demo-assignment-kumailnaqvi354/ASE Assignment Demo/BOOSEInterpreterUI.Designer.cs
     startLine: 2
   assemblies:
   - ASE Assignment Demo
@@ -580,12 +580,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: ASE Assignment Demo/Form1.cs
-      branch: main
+      path: ASE Assignment Demo/BOOSEInterpreterUI.cs
+      branch: variableAndCustomFunctions
       repo: git@github.com:ASE-Classroom/ase-demo-assignment-kumailnaqvi354.git
     id: .ctor
-    path: ../ase-demo-assignment-kumailnaqvi354/ASE Assignment Demo/Form1.cs
-    startLine: 23
+    path: ../ase-demo-assignment-kumailnaqvi354/ASE Assignment Demo/BOOSEInterpreterUI.cs
+    startLine: 20
   assemblies:
   - ASE Assignment Demo
   namespace: ASE_Assignment_Demo
@@ -616,11 +616,11 @@ items:
   type: Method
   source:
     remote:
-      path: ASE Assignment Demo/Form1.Designer.cs
-      branch: main
+      path: ASE Assignment Demo/BOOSEInterpreterUI.Designer.cs
+      branch: variableAndCustomFunctions
       repo: git@github.com:ASE-Classroom/ase-demo-assignment-kumailnaqvi354.git
     id: Dispose
-    path: ../ase-demo-assignment-kumailnaqvi354/ASE Assignment Demo/Form1.Designer.cs
+    path: ../ase-demo-assignment-kumailnaqvi354/ASE Assignment Demo/BOOSEInterpreterUI.Designer.cs
     startLine: 13
   assemblies:
   - ASE Assignment Demo

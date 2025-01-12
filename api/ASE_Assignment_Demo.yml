@@ -6,6 +6,7 @@ items:
   children:
   - ASE_Assignment_Demo.AppCanvas
   - ASE_Assignment_Demo.Form1
+  - ASE_Assignment_Demo.IAppCanvas
   langs:
   - csharp
   - vb
@@ -28,3 +29,16 @@ references:
   name: Form1
   nameWithType: Form1
   fullName: ASE_Assignment_Demo.Form1
+- uid: ASE_Assignment_Demo.IAppCanvas
+  commentId: T:ASE_Assignment_Demo.IAppCanvas
+  parent: ASE_Assignment_Demo
+  href: ASE_Assignment_Demo.IAppCanvas.html
+  name: IAppCanvas
+  nameWithType: IAppCanvas
+  fullName: ASE_Assignment_Demo.IAppCanvas
+- uid: ASE_Assignment_Demo
+  commentId: N:ASE_Assignment_Demo
+  href: ASE_Assignment_Demo.html
+  name: ASE_Assignment_Demo
+  nameWithType: ASE_Assignment_Demo
+  fullName: ASE_Assignment_Demo

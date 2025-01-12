@@ -6,7 +6,7 @@ items:
   parent: ASE_Assignment_Demo
   children:
   - ASE_Assignment_Demo.AppCanvas.#ctor
-  - ASE_Assignment_Demo.AppCanvas.Circle(System.Int32,System.Boolean)
+  - ASE_Assignment_Demo.AppCanvas.Circle(ASE_Assignment_Demo.Dynamic.Real,System.Boolean)
   - ASE_Assignment_Demo.AppCanvas.Clear
   - ASE_Assignment_Demo.AppCanvas.Dispose
   - ASE_Assignment_Demo.AppCanvas.DrawTo(System.Int32,System.Int32)
@@ -18,6 +18,7 @@ items:
   - ASE_Assignment_Demo.AppCanvas.SetColour(System.Int32,System.Int32,System.Int32)
   - ASE_Assignment_Demo.AppCanvas.SetGraphics(System.Drawing.Graphics)
   - ASE_Assignment_Demo.AppCanvas.Tri(System.Int32,System.Int32)
+  - ASE_Assignment_Demo.AppCanvas.ValidatePosition(System.Int32,System.Int32)
   - ASE_Assignment_Demo.AppCanvas.WriteText(System.String)
   - ASE_Assignment_Demo.AppCanvas.Xpos
   - ASE_Assignment_Demo.AppCanvas.Ypos
@@ -32,23 +33,26 @@ items:
   source:
     remote:
       path: ASE Assignment Demo/AppCanvas.cs
-      branch: main
+      branch: variableAndCustomFunctions
       repo: git@github.com:ASE-Classroom/ase-demo-assignment-kumailnaqvi354.git
     id: AppCanvas
     path: ../ase-demo-assignment-kumailnaqvi354/ASE Assignment Demo/AppCanvas.cs
-    startLine: 10
+    startLine: 8
   assemblies:
   - ASE Assignment Demo
   namespace: ASE_Assignment_Demo
-  summary: Represents a drawable canvas that supports various shapes and text.
+  summary: >-
+    Represents a drawable canvas that supports various shapes and text operations.
+
+    Provides functionality to draw geometric shapes, move the pen, and manage canvas properties.
   example: []
   syntax:
-    content: 'public class AppCanvas : ICanvas'
-    content.vb: Public Class AppCanvas Implements ICanvas
+    content: 'public class AppCanvas : IAppCanvas'
+    content.vb: Public Class AppCanvas Implements IAppCanvas
   inheritance:
   - System.Object
   implements:
-  - BOOSE.ICanvas
+  - ASE_Assignment_Demo.IAppCanvas
   inheritedMembers:
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -71,18 +75,18 @@ items:
   source:
     remote:
       path: ASE Assignment Demo/AppCanvas.cs
-      branch: main
+      branch: variableAndCustomFunctions
       repo: git@github.com:ASE-Classroom/ase-demo-assignment-kumailnaqvi354.git
     id: .ctor
     path: ../ase-demo-assignment-kumailnaqvi354/ASE Assignment Demo/AppCanvas.cs
-    startLine: 26
+    startLine: 24
   assemblies:
   - ASE Assignment Demo
   namespace: ASE_Assignment_Demo
   summary: >-
     Initializes a new instance of the <xref href="ASE_Assignment_Demo.AppCanvas" data-throw-if-not-resolved="false"></xref> class.
 
-    Sets the canvas size and default pen color.
+    Sets default canvas size and pen color.
   example: []
   syntax:
     content: public AppCanvas()
@@ -105,15 +109,15 @@ items:
   source:
     remote:
       path: ASE Assignment Demo/AppCanvas.cs
-      branch: main
+      branch: variableAndCustomFunctions
       repo: git@github.com:ASE-Classroom/ase-demo-assignment-kumailnaqvi354.git
     id: Xpos
     path: ../ase-demo-assignment-kumailnaqvi354/ASE Assignment Demo/AppCanvas.cs
-    startLine: 35
+    startLine: 33
   assemblies:
   - ASE Assignment Demo
   namespace: ASE_Assignment_Demo
-  summary: Gets or sets the current X position.
+  summary: Gets or sets the current X position of the pen on the canvas.
   example: []
   syntax:
     content: public int Xpos { get; set; }
@@ -122,8 +126,6 @@ items:
       type: System.Int32
     content.vb: Public Property Xpos As Integer
   overload: ASE_Assignment_Demo.AppCanvas.Xpos*
-  implements:
-  - BOOSE.ICanvas.Xpos
 - uid: ASE_Assignment_Demo.AppCanvas.Ypos
   commentId: P:ASE_Assignment_Demo.AppCanvas.Ypos
   id: Ypos
@@ -138,15 +140,15 @@ items:
   source:
     remote:
       path: ASE Assignment Demo/AppCanvas.cs
-      branch: main
+      branch: variableAndCustomFunctions
       repo: git@github.com:ASE-Classroom/ase-demo-assignment-kumailnaqvi354.git
     id: Ypos
     path: ../ase-demo-assignment-kumailnaqvi354/ASE Assignment Demo/AppCanvas.cs
-    startLine: 44
+    startLine: 42
   assemblies:
   - ASE Assignment Demo
   namespace: ASE_Assignment_Demo
-  summary: Gets or sets the current Y position.
+  summary: Gets or sets the current Y position of the pen on the canvas.
   example: []
   syntax:
     content: public int Ypos { get; set; }
@@ -155,8 +157,6 @@ items:
       type: System.Int32
     content.vb: Public Property Ypos As Integer
   overload: ASE_Assignment_Demo.AppCanvas.Ypos*
-  implements:
-  - BOOSE.ICanvas.Ypos
 - uid: ASE_Assignment_Demo.AppCanvas.PenColour
   commentId: P:ASE_Assignment_Demo.AppCanvas.PenColour
   id: PenColour
@@ -171,15 +171,15 @@ items:
   source:
     remote:
       path: ASE Assignment Demo/AppCanvas.cs
-      branch: main
+      branch: variableAndCustomFunctions
       repo: git@github.com:ASE-Classroom/ase-demo-assignment-kumailnaqvi354.git
     id: PenColour
     path: ../ase-demo-assignment-kumailnaqvi354/ASE Assignment Demo/AppCanvas.cs
-    startLine: 53
+    startLine: 51
   assemblies:
   - ASE Assignment Demo
   namespace: ASE_Assignment_Demo
-  summary: Gets or sets the pen color.
+  summary: Gets or sets the color of the pen used for drawing.
   example: []
   syntax:
     content: public object PenColour { get; set; }
@@ -188,52 +188,50 @@ items:
       type: System.Object
     content.vb: Public Property PenColour As Object
   overload: ASE_Assignment_Demo.AppCanvas.PenColour*
-  implements:
-  - BOOSE.ICanvas.PenColour
-- uid: ASE_Assignment_Demo.AppCanvas.Circle(System.Int32,System.Boolean)
-  commentId: M:ASE_Assignment_Demo.AppCanvas.Circle(System.Int32,System.Boolean)
-  id: Circle(System.Int32,System.Boolean)
+- uid: ASE_Assignment_Demo.AppCanvas.Circle(ASE_Assignment_Demo.Dynamic.Real,System.Boolean)
+  commentId: M:ASE_Assignment_Demo.AppCanvas.Circle(ASE_Assignment_Demo.Dynamic.Real,System.Boolean)
+  id: Circle(ASE_Assignment_Demo.Dynamic.Real,System.Boolean)
   parent: ASE_Assignment_Demo.AppCanvas
   langs:
   - csharp
   - vb
-  name: Circle(int, bool)
-  nameWithType: AppCanvas.Circle(int, bool)
-  fullName: ASE_Assignment_Demo.AppCanvas.Circle(int, bool)
+  name: Circle(Real, bool)
+  nameWithType: AppCanvas.Circle(Real, bool)
+  fullName: ASE_Assignment_Demo.AppCanvas.Circle(ASE_Assignment_Demo.Dynamic.Real, bool)
   type: Method
   source:
     remote:
       path: ASE Assignment Demo/AppCanvas.cs
-      branch: main
+      branch: variableAndCustomFunctions
       repo: git@github.com:ASE-Classroom/ase-demo-assignment-kumailnaqvi354.git
     id: Circle
     path: ../ase-demo-assignment-kumailnaqvi354/ASE Assignment Demo/AppCanvas.cs
-    startLine: 65
+    startLine: 63
   assemblies:
   - ASE Assignment Demo
   namespace: ASE_Assignment_Demo
-  summary: Draws a circle at the current position with the specified radius.
+  summary: Draws a circle at the current position using the specified radius and fill option.
   example: []
   syntax:
-    content: public void Circle(int radius, bool filled)
+    content: public void Circle(Real radius, bool filled)
     parameters:
     - id: radius
-      type: System.Int32
+      type: ASE_Assignment_Demo.Dynamic.Real
       description: The radius of the circle.
     - id: filled
       type: System.Boolean
-      description: Indicates whether the circle should be filled.
-    content.vb: Public Sub Circle(radius As Integer, filled As Boolean)
+      description: Specifies whether the circle should be filled.
+    content.vb: Public Sub Circle(radius As Real, filled As Boolean)
   overload: ASE_Assignment_Demo.AppCanvas.Circle*
   exceptions:
-  - type: BOOSE.CanvasException
-    commentId: T:BOOSE.CanvasException
+  - type: System.Exception
+    commentId: T:System.Exception
     description: Thrown when the radius is negative.
   implements:
-  - BOOSE.ICanvas.Circle(System.Int32,System.Boolean)
-  nameWithType.vb: AppCanvas.Circle(Integer, Boolean)
-  fullName.vb: ASE_Assignment_Demo.AppCanvas.Circle(Integer, Boolean)
-  name.vb: Circle(Integer, Boolean)
+  - ASE_Assignment_Demo.IAppCanvas.Circle(ASE_Assignment_Demo.Dynamic.Real,System.Boolean)
+  nameWithType.vb: AppCanvas.Circle(Real, Boolean)
+  fullName.vb: ASE_Assignment_Demo.AppCanvas.Circle(ASE_Assignment_Demo.Dynamic.Real, Boolean)
+  name.vb: Circle(Real, Boolean)
 - uid: ASE_Assignment_Demo.AppCanvas.Clear
   commentId: M:ASE_Assignment_Demo.AppCanvas.Clear
   id: Clear
@@ -248,22 +246,20 @@ items:
   source:
     remote:
       path: ASE Assignment Demo/AppCanvas.cs
-      branch: main
+      branch: variableAndCustomFunctions
       repo: git@github.com:ASE-Classroom/ase-demo-assignment-kumailnaqvi354.git
     id: Clear
     path: ../ase-demo-assignment-kumailnaqvi354/ASE Assignment Demo/AppCanvas.cs
-    startLine: 90
+    startLine: 106
   assemblies:
   - ASE Assignment Demo
   namespace: ASE_Assignment_Demo
-  summary: Clears the canvas with a gray color.
+  summary: Clears the canvas, filling it with a default gray background color.
   example: []
   syntax:
     content: public void Clear()
     content.vb: Public Sub Clear()
   overload: ASE_Assignment_Demo.AppCanvas.Clear*
-  implements:
-  - BOOSE.ICanvas.Clear
 - uid: ASE_Assignment_Demo.AppCanvas.DrawTo(System.Int32,System.Int32)
   commentId: M:ASE_Assignment_Demo.AppCanvas.DrawTo(System.Int32,System.Int32)
   id: DrawTo(System.Int32,System.Int32)
@@ -278,15 +274,15 @@ items:
   source:
     remote:
       path: ASE Assignment Demo/AppCanvas.cs
-      branch: main
+      branch: variableAndCustomFunctions
       repo: git@github.com:ASE-Classroom/ase-demo-assignment-kumailnaqvi354.git
     id: DrawTo
     path: ../ase-demo-assignment-kumailnaqvi354/ASE Assignment Demo/AppCanvas.cs
-    startLine: 101
+    startLine: 117
   assemblies:
   - ASE Assignment Demo
   namespace: ASE_Assignment_Demo
-  summary: Draws a line from the current position to the specified coordinates.
+  summary: Draws a line from the current pen position to the specified coordinates.
   example: []
   syntax:
     content: public void DrawTo(int toX, int toY)
@@ -300,11 +296,9 @@ items:
     content.vb: Public Sub DrawTo(toX As Integer, toY As Integer)
   overload: ASE_Assignment_Demo.AppCanvas.DrawTo*
   exceptions:
-  - type: BOOSE.CanvasException
-    commentId: T:BOOSE.CanvasException
+  - type: System.Exception
+    commentId: T:System.Exception
     description: Thrown when the coordinates are out of bounds.
-  implements:
-  - BOOSE.ICanvas.DrawTo(System.Int32,System.Int32)
   nameWithType.vb: AppCanvas.DrawTo(Integer, Integer)
   fullName.vb: ASE_Assignment_Demo.AppCanvas.DrawTo(Integer, Integer)
   name.vb: DrawTo(Integer, Integer)
@@ -322,25 +316,25 @@ items:
   source:
     remote:
       path: ASE Assignment Demo/AppCanvas.cs
-      branch: main
+      branch: variableAndCustomFunctions
       repo: git@github.com:ASE-Classroom/ase-demo-assignment-kumailnaqvi354.git
     id: getBitmap
     path: ../ase-demo-assignment-kumailnaqvi354/ASE Assignment Demo/AppCanvas.cs
-    startLine: 116
+    startLine: 132
   assemblies:
   - ASE Assignment Demo
   namespace: ASE_Assignment_Demo
-  summary: Gets the bitmap representation of the canvas.
+  summary: Retrieves the bitmap representation of the canvas for rendering.
   example: []
   syntax:
     content: public object getBitmap()
     return:
       type: System.Object
-      description: The bitmap image of the canvas.
+      description: The bitmap object representing the canvas.
     content.vb: Public Function getBitmap() As Object
   overload: ASE_Assignment_Demo.AppCanvas.getBitmap*
   implements:
-  - BOOSE.ICanvas.getBitmap
+  - ASE_Assignment_Demo.IAppCanvas.getBitmap
 - uid: ASE_Assignment_Demo.AppCanvas.MoveTo(System.Int32,System.Int32)
   commentId: M:ASE_Assignment_Demo.AppCanvas.MoveTo(System.Int32,System.Int32)
   id: MoveTo(System.Int32,System.Int32)
@@ -355,15 +349,15 @@ items:
   source:
     remote:
       path: ASE Assignment Demo/AppCanvas.cs
-      branch: main
+      branch: variableAndCustomFunctions
       repo: git@github.com:ASE-Classroom/ase-demo-assignment-kumailnaqvi354.git
     id: MoveTo
     path: ../ase-demo-assignment-kumailnaqvi354/ASE Assignment Demo/AppCanvas.cs
-    startLine: 127
+    startLine: 143
   assemblies:
   - ASE Assignment Demo
   namespace: ASE_Assignment_Demo
-  summary: Moves the current position to the specified coordinates.
+  summary: Moves the pen to the specified coordinates without drawing.
   example: []
   syntax:
     content: public void MoveTo(int x, int y)
@@ -377,11 +371,11 @@ items:
     content.vb: Public Sub MoveTo(x As Integer, y As Integer)
   overload: ASE_Assignment_Demo.AppCanvas.MoveTo*
   exceptions:
-  - type: BOOSE.CanvasException
-    commentId: T:BOOSE.CanvasException
+  - type: System.Exception
+    commentId: T:System.Exception
     description: Thrown when the coordinates are out of bounds.
   implements:
-  - BOOSE.ICanvas.MoveTo(System.Int32,System.Int32)
+  - ASE_Assignment_Demo.IAppCanvas.MoveTo(System.Int32,System.Int32)
   nameWithType.vb: AppCanvas.MoveTo(Integer, Integer)
   fullName.vb: ASE_Assignment_Demo.AppCanvas.MoveTo(Integer, Integer)
   name.vb: MoveTo(Integer, Integer)
@@ -399,15 +393,15 @@ items:
   source:
     remote:
       path: ASE Assignment Demo/AppCanvas.cs
-      branch: main
+      branch: variableAndCustomFunctions
       repo: git@github.com:ASE-Classroom/ase-demo-assignment-kumailnaqvi354.git
     id: Rect
     path: ../ase-demo-assignment-kumailnaqvi354/ASE Assignment Demo/AppCanvas.cs
-    startLine: 140
+    startLine: 156
   assemblies:
   - ASE Assignment Demo
   namespace: ASE_Assignment_Demo
-  summary: Draws a rectangle at the current position with the specified dimensions.
+  summary: Draws a rectangle at the current position using the specified dimensions and fill option.
   example: []
   syntax:
     content: public void Rect(int width, int height, bool filled)
@@ -420,14 +414,55 @@ items:
       description: The height of the rectangle.
     - id: filled
       type: System.Boolean
-      description: Indicates whether the rectangle should be filled.
+      description: Specifies whether the rectangle should be filled.
     content.vb: Public Sub Rect(width As Integer, height As Integer, filled As Boolean)
   overload: ASE_Assignment_Demo.AppCanvas.Rect*
   implements:
-  - BOOSE.ICanvas.Rect(System.Int32,System.Int32,System.Boolean)
+  - ASE_Assignment_Demo.IAppCanvas.Rect(System.Int32,System.Int32,System.Boolean)
   nameWithType.vb: AppCanvas.Rect(Integer, Integer, Boolean)
   fullName.vb: ASE_Assignment_Demo.AppCanvas.Rect(Integer, Integer, Boolean)
   name.vb: Rect(Integer, Integer, Boolean)
+- uid: ASE_Assignment_Demo.AppCanvas.WriteText(System.String)
+  commentId: M:ASE_Assignment_Demo.AppCanvas.WriteText(System.String)
+  id: WriteText(System.String)
+  parent: ASE_Assignment_Demo.AppCanvas
+  langs:
+  - csharp
+  - vb
+  name: WriteText(string)
+  nameWithType: AppCanvas.WriteText(string)
+  fullName: ASE_Assignment_Demo.AppCanvas.WriteText(string)
+  type: Method
+  source:
+    remote:
+      path: ASE Assignment Demo/AppCanvas.cs
+      branch: variableAndCustomFunctions
+      repo: git@github.com:ASE-Classroom/ase-demo-assignment-kumailnaqvi354.git
+    id: WriteText
+    path: ../ase-demo-assignment-kumailnaqvi354/ASE Assignment Demo/AppCanvas.cs
+    startLine: 176
+  assemblies:
+  - ASE Assignment Demo
+  namespace: ASE_Assignment_Demo
+  summary: Writes text at the current pen position on the canvas.
+  example: []
+  syntax:
+    content: public void WriteText(string text)
+    parameters:
+    - id: text
+      type: System.String
+      description: The text to write.
+    content.vb: Public Sub WriteText(text As String)
+  overload: ASE_Assignment_Demo.AppCanvas.WriteText*
+  exceptions:
+  - type: System.Exception
+    commentId: T:System.Exception
+    description: Thrown if an error occurs while drawing text.
+  implements:
+  - ASE_Assignment_Demo.IAppCanvas.WriteText(System.String)
+  nameWithType.vb: AppCanvas.WriteText(String)
+  fullName.vb: ASE_Assignment_Demo.AppCanvas.WriteText(String)
+  name.vb: WriteText(String)
 - uid: ASE_Assignment_Demo.AppCanvas.Reset
   commentId: M:ASE_Assignment_Demo.AppCanvas.Reset
   id: Reset
@@ -442,22 +477,22 @@ items:
   source:
     remote:
       path: ASE Assignment Demo/AppCanvas.cs
-      branch: main
+      branch: variableAndCustomFunctions
       repo: git@github.com:ASE-Classroom/ase-demo-assignment-kumailnaqvi354.git
     id: Reset
     path: ../ase-demo-assignment-kumailnaqvi354/ASE Assignment Demo/AppCanvas.cs
-    startLine: 158
+    startLine: 194
   assemblies:
   - ASE Assignment Demo
   namespace: ASE_Assignment_Demo
-  summary: Resets the current position to the origin (0,0).
+  summary: Resets the canvas position to the origin (0,0).
   example: []
   syntax:
     content: public void Reset()
     content.vb: Public Sub Reset()
   overload: ASE_Assignment_Demo.AppCanvas.Reset*
   implements:
-  - BOOSE.ICanvas.Reset
+  - ASE_Assignment_Demo.IAppCanvas.Reset
 - uid: ASE_Assignment_Demo.AppCanvas.Set(System.Int32,System.Int32)
   commentId: M:ASE_Assignment_Demo.AppCanvas.Set(System.Int32,System.Int32)
   id: Set(System.Int32,System.Int32)
@@ -472,15 +507,15 @@ items:
   source:
     remote:
       path: ASE Assignment Demo/AppCanvas.cs
-      branch: main
+      branch: variableAndCustomFunctions
       repo: git@github.com:ASE-Classroom/ase-demo-assignment-kumailnaqvi354.git
     id: Set
     path: ../ase-demo-assignment-kumailnaqvi354/ASE Assignment Demo/AppCanvas.cs
-    startLine: 168
+    startLine: 204
   assemblies:
   - ASE Assignment Demo
   namespace: ASE_Assignment_Demo
-  summary: Sets the size of the canvas.
+  summary: Sets the size of the canvas and initializes the drawing surface.
   example: []
   syntax:
     content: public void Set(int xsize, int ysize)
@@ -493,8 +528,6 @@ items:
       description: The height of the canvas.
     content.vb: Public Sub [Set](xsize As Integer, ysize As Integer)
   overload: ASE_Assignment_Demo.AppCanvas.Set*
-  implements:
-  - BOOSE.ICanvas.Set(System.Int32,System.Int32)
   nameWithType.vb: AppCanvas.Set(Integer, Integer)
   fullName.vb: ASE_Assignment_Demo.AppCanvas.Set(Integer, Integer)
   name.vb: Set(Integer, Integer)
@@ -512,36 +545,36 @@ items:
   source:
     remote:
       path: ASE Assignment Demo/AppCanvas.cs
-      branch: main
+      branch: variableAndCustomFunctions
       repo: git@github.com:ASE-Classroom/ase-demo-assignment-kumailnaqvi354.git
     id: SetColour
     path: ../ase-demo-assignment-kumailnaqvi354/ASE Assignment Demo/AppCanvas.cs
-    startLine: 184
+    startLine: 220
   assemblies:
   - ASE Assignment Demo
   namespace: ASE_Assignment_Demo
-  summary: Sets the pen color based on RGB values.
+  summary: Sets the pen color based on the specified RGB values.
   example: []
   syntax:
     content: public void SetColour(int red, int green, int blue)
     parameters:
     - id: red
       type: System.Int32
-      description: The red component of the color.
+      description: Red component (0-255).
     - id: green
       type: System.Int32
-      description: The green component of the color.
+      description: Green component (0-255).
     - id: blue
       type: System.Int32
-      description: The blue component of the color.
+      description: Blue component (0-255).
     content.vb: Public Sub SetColour(red As Integer, green As Integer, blue As Integer)
   overload: ASE_Assignment_Demo.AppCanvas.SetColour*
   exceptions:
-  - type: BOOSE.CanvasException
-    commentId: T:BOOSE.CanvasException
-    description: Thrown when any color component is out of range (0-255).
+  - type: System.Exception
+    commentId: T:System.Exception
+    description: Thrown when any color component is out of range.
   implements:
-  - BOOSE.ICanvas.SetColour(System.Int32,System.Int32,System.Int32)
+  - ASE_Assignment_Demo.IAppCanvas.SetColour(System.Int32,System.Int32,System.Int32)
   nameWithType.vb: AppCanvas.SetColour(Integer, Integer, Integer)
   fullName.vb: ASE_Assignment_Demo.AppCanvas.SetColour(Integer, Integer, Integer)
   name.vb: SetColour(Integer, Integer, Integer)
@@ -559,21 +592,26 @@ items:
   source:
     remote:
       path: ASE Assignment Demo/AppCanvas.cs
-      branch: main
+      branch: variableAndCustomFunctions
       repo: git@github.com:ASE-Classroom/ase-demo-assignment-kumailnaqvi354.git
     id: SetGraphics
     path: ../ase-demo-assignment-kumailnaqvi354/ASE Assignment Demo/AppCanvas.cs
-    startLine: 193
+    startLine: 234
   assemblies:
   - ASE Assignment Demo
   namespace: ASE_Assignment_Demo
+  summary: Sets the graphics context for the canvas.
+  example: []
   syntax:
     content: public void SetGraphics(Graphics graphics)
     parameters:
     - id: graphics
       type: System.Drawing.Graphics
+      description: The graphics object to use for drawing.
     content.vb: Public Sub SetGraphics(graphics As Graphics)
   overload: ASE_Assignment_Demo.AppCanvas.SetGraphics*
+  implements:
+  - ASE_Assignment_Demo.IAppCanvas.SetGraphics(System.Drawing.Graphics)
 - uid: ASE_Assignment_Demo.AppCanvas.Tri(System.Int32,System.Int32)
   commentId: M:ASE_Assignment_Demo.AppCanvas.Tri(System.Int32,System.Int32)
   id: Tri(System.Int32,System.Int32)
@@ -588,18 +626,15 @@ items:
   source:
     remote:
       path: ASE Assignment Demo/AppCanvas.cs
-      branch: main
+      branch: variableAndCustomFunctions
       repo: git@github.com:ASE-Classroom/ase-demo-assignment-kumailnaqvi354.git
     id: Tri
     path: ../ase-demo-assignment-kumailnaqvi354/ASE Assignment Demo/AppCanvas.cs
-    startLine: 206
+    startLine: 245
   assemblies:
   - ASE Assignment Demo
   namespace: ASE_Assignment_Demo
-  summary: >-
-    Draws a triangle with the specified width and height.
-
-    Not implemented yet.
+  summary: Draws a triangle at the current position using the specified dimensions.
   example: []
   syntax:
     content: public void Tri(int width, int height)
@@ -613,58 +648,58 @@ items:
     content.vb: Public Sub Tri(width As Integer, height As Integer)
   overload: ASE_Assignment_Demo.AppCanvas.Tri*
   exceptions:
-  - type: System.NotImplementedException
-    commentId: T:System.NotImplementedException
-    description: Thrown when this method is called.
+  - type: System.Exception
+    commentId: T:System.Exception
+    description: Thrown when the dimensions are invalid.
   implements:
-  - BOOSE.ICanvas.Tri(System.Int32,System.Int32)
+  - ASE_Assignment_Demo.IAppCanvas.Tri(System.Int32,System.Int32)
   nameWithType.vb: AppCanvas.Tri(Integer, Integer)
   fullName.vb: ASE_Assignment_Demo.AppCanvas.Tri(Integer, Integer)
   name.vb: Tri(Integer, Integer)
-- uid: ASE_Assignment_Demo.AppCanvas.WriteText(System.String)
-  commentId: M:ASE_Assignment_Demo.AppCanvas.WriteText(System.String)
-  id: WriteText(System.String)
+- uid: ASE_Assignment_Demo.AppCanvas.ValidatePosition(System.Int32,System.Int32)
+  commentId: M:ASE_Assignment_Demo.AppCanvas.ValidatePosition(System.Int32,System.Int32)
+  id: ValidatePosition(System.Int32,System.Int32)
   parent: ASE_Assignment_Demo.AppCanvas
   langs:
   - csharp
   - vb
-  name: WriteText(string)
-  nameWithType: AppCanvas.WriteText(string)
-  fullName: ASE_Assignment_Demo.AppCanvas.WriteText(string)
+  name: ValidatePosition(int, int)
+  nameWithType: AppCanvas.ValidatePosition(int, int)
+  fullName: ASE_Assignment_Demo.AppCanvas.ValidatePosition(int, int)
   type: Method
   source:
     remote:
       path: ASE Assignment Demo/AppCanvas.cs
-      branch: main
+      branch: variableAndCustomFunctions
       repo: git@github.com:ASE-Classroom/ase-demo-assignment-kumailnaqvi354.git
-    id: WriteText
+    id: ValidatePosition
     path: ../ase-demo-assignment-kumailnaqvi354/ASE Assignment Demo/AppCanvas.cs
-    startLine: 217
+    startLine: 270
   assemblies:
   - ASE Assignment Demo
   namespace: ASE_Assignment_Demo
-  summary: >-
-    Writes text at the current position.
-
-    Not implemented yet.
+  summary: Validates whether the specified coordinates are within the canvas bounds.
   example: []
   syntax:
-    content: public void WriteText(string text)
+    content: public void ValidatePosition(int x, int y)
     parameters:
-    - id: text
-      type: System.String
-      description: The text to write.
-    content.vb: Public Sub WriteText(text As String)
-  overload: ASE_Assignment_Demo.AppCanvas.WriteText*
+    - id: x
+      type: System.Int32
+      description: The X coordinate to validate.
+    - id: y
+      type: System.Int32
+      description: The Y coordinate to validate.
+    content.vb: Public Sub ValidatePosition(x As Integer, y As Integer)
+  overload: ASE_Assignment_Demo.AppCanvas.ValidatePosition*
   exceptions:
-  - type: System.NotImplementedException
-    commentId: T:System.NotImplementedException
-    description: Thrown when this method is called.
+  - type: System.Exception
+    commentId: T:System.Exception
+    description: Thrown when the coordinates are out of bounds.
   implements:
-  - BOOSE.ICanvas.WriteText(System.String)
-  nameWithType.vb: AppCanvas.WriteText(String)
-  fullName.vb: ASE_Assignment_Demo.AppCanvas.WriteText(String)
-  name.vb: WriteText(String)
+  - ASE_Assignment_Demo.IAppCanvas.ValidatePosition(System.Int32,System.Int32)
+  nameWithType.vb: AppCanvas.ValidatePosition(Integer, Integer)
+  fullName.vb: ASE_Assignment_Demo.AppCanvas.ValidatePosition(Integer, Integer)
+  name.vb: ValidatePosition(Integer, Integer)
 - uid: ASE_Assignment_Demo.AppCanvas.Dispose
   commentId: M:ASE_Assignment_Demo.AppCanvas.Dispose
   id: Dispose
@@ -679,15 +714,15 @@ items:
   source:
     remote:
       path: ASE Assignment Demo/AppCanvas.cs
-      branch: main
+      branch: variableAndCustomFunctions
       repo: git@github.com:ASE-Classroom/ase-demo-assignment-kumailnaqvi354.git
     id: Dispose
     path: ../ase-demo-assignment-kumailnaqvi354/ASE Assignment Demo/AppCanvas.cs
-    startLine: 240
+    startLine: 281
   assemblies:
   - ASE Assignment Demo
   namespace: ASE_Assignment_Demo
-  summary: Disposes the resources used by the canvas.
+  summary: Disposes resources used by the canvas.
   example: []
   syntax:
     content: public void Dispose()
@@ -711,13 +746,13 @@ references:
   nameWithType.vb: Object
   fullName.vb: Object
   name.vb: Object
-- uid: BOOSE.ICanvas
-  commentId: T:BOOSE.ICanvas
-  parent: BOOSE
-  isExternal: true
-  name: ICanvas
-  nameWithType: ICanvas
-  fullName: BOOSE.ICanvas
+- uid: ASE_Assignment_Demo.IAppCanvas
+  commentId: T:ASE_Assignment_Demo.IAppCanvas
+  parent: ASE_Assignment_Demo
+  href: ASE_Assignment_Demo.IAppCanvas.html
+  name: IAppCanvas
+  nameWithType: IAppCanvas
+  fullName: ASE_Assignment_Demo.IAppCanvas
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -944,12 +979,6 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: BOOSE
-  commentId: N:BOOSE
-  isExternal: true
-  name: BOOSE
-  nameWithType: BOOSE
-  fullName: BOOSE
 - uid: ASE_Assignment_Demo.AppCanvas
   commentId: T:ASE_Assignment_Demo.AppCanvas
   href: ASE_Assignment_Demo.AppCanvas.html
@@ -971,13 +1000,6 @@ references:
   name: Xpos
   nameWithType: AppCanvas.Xpos
   fullName: ASE_Assignment_Demo.AppCanvas.Xpos
-- uid: BOOSE.ICanvas.Xpos
-  commentId: P:BOOSE.ICanvas.Xpos
-  parent: BOOSE.ICanvas
-  isExternal: true
-  name: Xpos
-  nameWithType: ICanvas.Xpos
-  fullName: BOOSE.ICanvas.Xpos
 - uid: System.Int32
   commentId: T:System.Int32
   parent: System
@@ -995,58 +1017,44 @@ references:
   name: Ypos
   nameWithType: AppCanvas.Ypos
   fullName: ASE_Assignment_Demo.AppCanvas.Ypos
-- uid: BOOSE.ICanvas.Ypos
-  commentId: P:BOOSE.ICanvas.Ypos
-  parent: BOOSE.ICanvas
-  isExternal: true
-  name: Ypos
-  nameWithType: ICanvas.Ypos
-  fullName: BOOSE.ICanvas.Ypos
 - uid: ASE_Assignment_Demo.AppCanvas.PenColour*
   commentId: Overload:ASE_Assignment_Demo.AppCanvas.PenColour
   href: ASE_Assignment_Demo.AppCanvas.html#ASE_Assignment_Demo_AppCanvas_PenColour
   name: PenColour
   nameWithType: AppCanvas.PenColour
   fullName: ASE_Assignment_Demo.AppCanvas.PenColour
-- uid: BOOSE.ICanvas.PenColour
-  commentId: P:BOOSE.ICanvas.PenColour
-  parent: BOOSE.ICanvas
+- uid: System.Exception
+  commentId: T:System.Exception
   isExternal: true
-  name: PenColour
-  nameWithType: ICanvas.PenColour
-  fullName: BOOSE.ICanvas.PenColour
-- uid: BOOSE.CanvasException
-  commentId: T:BOOSE.CanvasException
-  isExternal: true
-  name: CanvasException
-  nameWithType: CanvasException
-  fullName: BOOSE.CanvasException
+  href: https://learn.microsoft.com/dotnet/api/system.exception
+  name: Exception
+  nameWithType: Exception
+  fullName: System.Exception
 - uid: ASE_Assignment_Demo.AppCanvas.Circle*
   commentId: Overload:ASE_Assignment_Demo.AppCanvas.Circle
-  href: ASE_Assignment_Demo.AppCanvas.html#ASE_Assignment_Demo_AppCanvas_Circle_System_Int32_System_Boolean_
+  href: ASE_Assignment_Demo.AppCanvas.html#ASE_Assignment_Demo_AppCanvas_Circle_ASE_Assignment_Demo_Dynamic_Real_System_Boolean_
   name: Circle
   nameWithType: AppCanvas.Circle
   fullName: ASE_Assignment_Demo.AppCanvas.Circle
-- uid: BOOSE.ICanvas.Circle(System.Int32,System.Boolean)
-  commentId: M:BOOSE.ICanvas.Circle(System.Int32,System.Boolean)
-  parent: BOOSE.ICanvas
+- uid: ASE_Assignment_Demo.IAppCanvas.Circle(ASE_Assignment_Demo.Dynamic.Real,System.Boolean)
+  commentId: M:ASE_Assignment_Demo.IAppCanvas.Circle(ASE_Assignment_Demo.Dynamic.Real,System.Boolean)
+  parent: ASE_Assignment_Demo.IAppCanvas
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.int32
-  name: Circle(int, bool)
-  nameWithType: ICanvas.Circle(int, bool)
-  fullName: BOOSE.ICanvas.Circle(int, bool)
-  nameWithType.vb: ICanvas.Circle(Integer, Boolean)
-  fullName.vb: BOOSE.ICanvas.Circle(Integer, Boolean)
-  name.vb: Circle(Integer, Boolean)
+  href: ASE_Assignment_Demo.IAppCanvas.html#ASE_Assignment_Demo_IAppCanvas_Circle_ASE_Assignment_Demo_Dynamic_Real_System_Boolean_
+  name: Circle(Real, bool)
+  nameWithType: IAppCanvas.Circle(Real, bool)
+  fullName: ASE_Assignment_Demo.IAppCanvas.Circle(ASE_Assignment_Demo.Dynamic.Real, bool)
+  nameWithType.vb: IAppCanvas.Circle(Real, Boolean)
+  fullName.vb: ASE_Assignment_Demo.IAppCanvas.Circle(ASE_Assignment_Demo.Dynamic.Real, Boolean)
+  name.vb: Circle(Real, Boolean)
   spec.csharp:
-  - uid: BOOSE.ICanvas.Circle(System.Int32,System.Boolean)
+  - uid: ASE_Assignment_Demo.IAppCanvas.Circle(ASE_Assignment_Demo.Dynamic.Real,System.Boolean)
     name: Circle
-    isExternal: true
+    href: ASE_Assignment_Demo.IAppCanvas.html#ASE_Assignment_Demo_IAppCanvas_Circle_ASE_Assignment_Demo_Dynamic_Real_System_Boolean_
   - name: (
-  - uid: System.Int32
-    name: int
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - uid: ASE_Assignment_Demo.Dynamic.Real
+    name: Real
+    href: ASE_Assignment_Demo.Dynamic.Real.html
   - name: ','
   - name: " "
   - uid: System.Boolean
@@ -1055,14 +1063,13 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
   spec.vb:
-  - uid: BOOSE.ICanvas.Circle(System.Int32,System.Boolean)
+  - uid: ASE_Assignment_Demo.IAppCanvas.Circle(ASE_Assignment_Demo.Dynamic.Real,System.Boolean)
     name: Circle
-    isExternal: true
+    href: ASE_Assignment_Demo.IAppCanvas.html#ASE_Assignment_Demo_IAppCanvas_Circle_ASE_Assignment_Demo_Dynamic_Real_System_Boolean_
   - name: (
-  - uid: System.Int32
-    name: Integer
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - uid: ASE_Assignment_Demo.Dynamic.Real
+    name: Real
+    href: ASE_Assignment_Demo.Dynamic.Real.html
   - name: ','
   - name: " "
   - uid: System.Boolean
@@ -1070,6 +1077,13 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
+- uid: ASE_Assignment_Demo.Dynamic.Real
+  commentId: T:ASE_Assignment_Demo.Dynamic.Real
+  parent: ASE_Assignment_Demo.Dynamic
+  href: ASE_Assignment_Demo.Dynamic.Real.html
+  name: Real
+  nameWithType: Real
+  fullName: ASE_Assignment_Demo.Dynamic.Real
 - uid: System.Boolean
   commentId: T:System.Boolean
   parent: System
@@ -1081,103 +1095,63 @@ references:
   nameWithType.vb: Boolean
   fullName.vb: Boolean
   name.vb: Boolean
+- uid: ASE_Assignment_Demo.Dynamic
+  commentId: N:ASE_Assignment_Demo.Dynamic
+  href: ASE_Assignment_Demo.html
+  name: ASE_Assignment_Demo.Dynamic
+  nameWithType: ASE_Assignment_Demo.Dynamic
+  fullName: ASE_Assignment_Demo.Dynamic
+  spec.csharp:
+  - uid: ASE_Assignment_Demo
+    name: ASE_Assignment_Demo
+    href: ASE_Assignment_Demo.html
+  - name: .
+  - uid: ASE_Assignment_Demo.Dynamic
+    name: Dynamic
+    href: ASE_Assignment_Demo.Dynamic.html
+  spec.vb:
+  - uid: ASE_Assignment_Demo
+    name: ASE_Assignment_Demo
+    href: ASE_Assignment_Demo.html
+  - name: .
+  - uid: ASE_Assignment_Demo.Dynamic
+    name: Dynamic
+    href: ASE_Assignment_Demo.Dynamic.html
 - uid: ASE_Assignment_Demo.AppCanvas.Clear*
   commentId: Overload:ASE_Assignment_Demo.AppCanvas.Clear
   href: ASE_Assignment_Demo.AppCanvas.html#ASE_Assignment_Demo_AppCanvas_Clear
   name: Clear
   nameWithType: AppCanvas.Clear
   fullName: ASE_Assignment_Demo.AppCanvas.Clear
-- uid: BOOSE.ICanvas.Clear
-  commentId: M:BOOSE.ICanvas.Clear
-  parent: BOOSE.ICanvas
-  isExternal: true
-  name: Clear()
-  nameWithType: ICanvas.Clear()
-  fullName: BOOSE.ICanvas.Clear()
-  spec.csharp:
-  - uid: BOOSE.ICanvas.Clear
-    name: Clear
-    isExternal: true
-  - name: (
-  - name: )
-  spec.vb:
-  - uid: BOOSE.ICanvas.Clear
-    name: Clear
-    isExternal: true
-  - name: (
-  - name: )
 - uid: ASE_Assignment_Demo.AppCanvas.DrawTo*
   commentId: Overload:ASE_Assignment_Demo.AppCanvas.DrawTo
   href: ASE_Assignment_Demo.AppCanvas.html#ASE_Assignment_Demo_AppCanvas_DrawTo_System_Int32_System_Int32_
   name: DrawTo
   nameWithType: AppCanvas.DrawTo
   fullName: ASE_Assignment_Demo.AppCanvas.DrawTo
-- uid: BOOSE.ICanvas.DrawTo(System.Int32,System.Int32)
-  commentId: M:BOOSE.ICanvas.DrawTo(System.Int32,System.Int32)
-  parent: BOOSE.ICanvas
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.int32
-  name: DrawTo(int, int)
-  nameWithType: ICanvas.DrawTo(int, int)
-  fullName: BOOSE.ICanvas.DrawTo(int, int)
-  nameWithType.vb: ICanvas.DrawTo(Integer, Integer)
-  fullName.vb: BOOSE.ICanvas.DrawTo(Integer, Integer)
-  name.vb: DrawTo(Integer, Integer)
-  spec.csharp:
-  - uid: BOOSE.ICanvas.DrawTo(System.Int32,System.Int32)
-    name: DrawTo
-    isExternal: true
-  - name: (
-  - uid: System.Int32
-    name: int
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.int32
-  - name: ','
-  - name: " "
-  - uid: System.Int32
-    name: int
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.int32
-  - name: )
-  spec.vb:
-  - uid: BOOSE.ICanvas.DrawTo(System.Int32,System.Int32)
-    name: DrawTo
-    isExternal: true
-  - name: (
-  - uid: System.Int32
-    name: Integer
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.int32
-  - name: ','
-  - name: " "
-  - uid: System.Int32
-    name: Integer
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.int32
-  - name: )
 - uid: ASE_Assignment_Demo.AppCanvas.getBitmap*
   commentId: Overload:ASE_Assignment_Demo.AppCanvas.getBitmap
   href: ASE_Assignment_Demo.AppCanvas.html#ASE_Assignment_Demo_AppCanvas_getBitmap
   name: getBitmap
   nameWithType: AppCanvas.getBitmap
   fullName: ASE_Assignment_Demo.AppCanvas.getBitmap
-- uid: BOOSE.ICanvas.getBitmap
-  commentId: M:BOOSE.ICanvas.getBitmap
-  parent: BOOSE.ICanvas
-  isExternal: true
+- uid: ASE_Assignment_Demo.IAppCanvas.getBitmap
+  commentId: M:ASE_Assignment_Demo.IAppCanvas.getBitmap
+  parent: ASE_Assignment_Demo.IAppCanvas
+  href: ASE_Assignment_Demo.IAppCanvas.html#ASE_Assignment_Demo_IAppCanvas_getBitmap
   name: getBitmap()
-  nameWithType: ICanvas.getBitmap()
-  fullName: BOOSE.ICanvas.getBitmap()
+  nameWithType: IAppCanvas.getBitmap()
+  fullName: ASE_Assignment_Demo.IAppCanvas.getBitmap()
   spec.csharp:
-  - uid: BOOSE.ICanvas.getBitmap
+  - uid: ASE_Assignment_Demo.IAppCanvas.getBitmap
     name: getBitmap
-    isExternal: true
+    href: ASE_Assignment_Demo.IAppCanvas.html#ASE_Assignment_Demo_IAppCanvas_getBitmap
   - name: (
   - name: )
   spec.vb:
-  - uid: BOOSE.ICanvas.getBitmap
+  - uid: ASE_Assignment_Demo.IAppCanvas.getBitmap
     name: getBitmap
-    isExternal: true
+    href: ASE_Assignment_Demo.IAppCanvas.html#ASE_Assignment_Demo_IAppCanvas_getBitmap
   - name: (
   - name: )
 - uid: ASE_Assignment_Demo.AppCanvas.MoveTo*
@@ -1186,21 +1160,21 @@ references:
   name: MoveTo
   nameWithType: AppCanvas.MoveTo
   fullName: ASE_Assignment_Demo.AppCanvas.MoveTo
-- uid: BOOSE.ICanvas.MoveTo(System.Int32,System.Int32)
-  commentId: M:BOOSE.ICanvas.MoveTo(System.Int32,System.Int32)
-  parent: BOOSE.ICanvas
+- uid: ASE_Assignment_Demo.IAppCanvas.MoveTo(System.Int32,System.Int32)
+  commentId: M:ASE_Assignment_Demo.IAppCanvas.MoveTo(System.Int32,System.Int32)
+  parent: ASE_Assignment_Demo.IAppCanvas
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.int32
+  href: ASE_Assignment_Demo.IAppCanvas.html#ASE_Assignment_Demo_IAppCanvas_MoveTo_System_Int32_System_Int32_
   name: MoveTo(int, int)
-  nameWithType: ICanvas.MoveTo(int, int)
-  fullName: BOOSE.ICanvas.MoveTo(int, int)
-  nameWithType.vb: ICanvas.MoveTo(Integer, Integer)
-  fullName.vb: BOOSE.ICanvas.MoveTo(Integer, Integer)
+  nameWithType: IAppCanvas.MoveTo(int, int)
+  fullName: ASE_Assignment_Demo.IAppCanvas.MoveTo(int, int)
+  nameWithType.vb: IAppCanvas.MoveTo(Integer, Integer)
+  fullName.vb: ASE_Assignment_Demo.IAppCanvas.MoveTo(Integer, Integer)
   name.vb: MoveTo(Integer, Integer)
   spec.csharp:
-  - uid: BOOSE.ICanvas.MoveTo(System.Int32,System.Int32)
+  - uid: ASE_Assignment_Demo.IAppCanvas.MoveTo(System.Int32,System.Int32)
     name: MoveTo
-    isExternal: true
+    href: ASE_Assignment_Demo.IAppCanvas.html#ASE_Assignment_Demo_IAppCanvas_MoveTo_System_Int32_System_Int32_
   - name: (
   - uid: System.Int32
     name: int
@@ -1214,9 +1188,9 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: )
   spec.vb:
-  - uid: BOOSE.ICanvas.MoveTo(System.Int32,System.Int32)
+  - uid: ASE_Assignment_Demo.IAppCanvas.MoveTo(System.Int32,System.Int32)
     name: MoveTo
-    isExternal: true
+    href: ASE_Assignment_Demo.IAppCanvas.html#ASE_Assignment_Demo_IAppCanvas_MoveTo_System_Int32_System_Int32_
   - name: (
   - uid: System.Int32
     name: Integer
@@ -1235,21 +1209,21 @@ references:
   name: Rect
   nameWithType: AppCanvas.Rect
   fullName: ASE_Assignment_Demo.AppCanvas.Rect
-- uid: BOOSE.ICanvas.Rect(System.Int32,System.Int32,System.Boolean)
-  commentId: M:BOOSE.ICanvas.Rect(System.Int32,System.Int32,System.Boolean)
-  parent: BOOSE.ICanvas
+- uid: ASE_Assignment_Demo.IAppCanvas.Rect(System.Int32,System.Int32,System.Boolean)
+  commentId: M:ASE_Assignment_Demo.IAppCanvas.Rect(System.Int32,System.Int32,System.Boolean)
+  parent: ASE_Assignment_Demo.IAppCanvas
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.int32
+  href: ASE_Assignment_Demo.IAppCanvas.html#ASE_Assignment_Demo_IAppCanvas_Rect_System_Int32_System_Int32_System_Boolean_
   name: Rect(int, int, bool)
-  nameWithType: ICanvas.Rect(int, int, bool)
-  fullName: BOOSE.ICanvas.Rect(int, int, bool)
-  nameWithType.vb: ICanvas.Rect(Integer, Integer, Boolean)
-  fullName.vb: BOOSE.ICanvas.Rect(Integer, Integer, Boolean)
+  nameWithType: IAppCanvas.Rect(int, int, bool)
+  fullName: ASE_Assignment_Demo.IAppCanvas.Rect(int, int, bool)
+  nameWithType.vb: IAppCanvas.Rect(Integer, Integer, Boolean)
+  fullName.vb: ASE_Assignment_Demo.IAppCanvas.Rect(Integer, Integer, Boolean)
   name.vb: Rect(Integer, Integer, Boolean)
   spec.csharp:
-  - uid: BOOSE.ICanvas.Rect(System.Int32,System.Int32,System.Boolean)
+  - uid: ASE_Assignment_Demo.IAppCanvas.Rect(System.Int32,System.Int32,System.Boolean)
     name: Rect
-    isExternal: true
+    href: ASE_Assignment_Demo.IAppCanvas.html#ASE_Assignment_Demo_IAppCanvas_Rect_System_Int32_System_Int32_System_Boolean_
   - name: (
   - uid: System.Int32
     name: int
@@ -1269,9 +1243,9 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
   spec.vb:
-  - uid: BOOSE.ICanvas.Rect(System.Int32,System.Int32,System.Boolean)
+  - uid: ASE_Assignment_Demo.IAppCanvas.Rect(System.Int32,System.Int32,System.Boolean)
     name: Rect
-    isExternal: true
+    href: ASE_Assignment_Demo.IAppCanvas.html#ASE_Assignment_Demo_IAppCanvas_Rect_System_Int32_System_Int32_System_Boolean_
   - name: (
   - uid: System.Int32
     name: Integer
@@ -1290,29 +1264,77 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.boolean
   - name: )
+- uid: ASE_Assignment_Demo.AppCanvas.WriteText*
+  commentId: Overload:ASE_Assignment_Demo.AppCanvas.WriteText
+  href: ASE_Assignment_Demo.AppCanvas.html#ASE_Assignment_Demo_AppCanvas_WriteText_System_String_
+  name: WriteText
+  nameWithType: AppCanvas.WriteText
+  fullName: ASE_Assignment_Demo.AppCanvas.WriteText
+- uid: ASE_Assignment_Demo.IAppCanvas.WriteText(System.String)
+  commentId: M:ASE_Assignment_Demo.IAppCanvas.WriteText(System.String)
+  parent: ASE_Assignment_Demo.IAppCanvas
+  isExternal: true
+  href: ASE_Assignment_Demo.IAppCanvas.html#ASE_Assignment_Demo_IAppCanvas_WriteText_System_String_
+  name: WriteText(string)
+  nameWithType: IAppCanvas.WriteText(string)
+  fullName: ASE_Assignment_Demo.IAppCanvas.WriteText(string)
+  nameWithType.vb: IAppCanvas.WriteText(String)
+  fullName.vb: ASE_Assignment_Demo.IAppCanvas.WriteText(String)
+  name.vb: WriteText(String)
+  spec.csharp:
+  - uid: ASE_Assignment_Demo.IAppCanvas.WriteText(System.String)
+    name: WriteText
+    href: ASE_Assignment_Demo.IAppCanvas.html#ASE_Assignment_Demo_IAppCanvas_WriteText_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: ASE_Assignment_Demo.IAppCanvas.WriteText(System.String)
+    name: WriteText
+    href: ASE_Assignment_Demo.IAppCanvas.html#ASE_Assignment_Demo_IAppCanvas_WriteText_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
 - uid: ASE_Assignment_Demo.AppCanvas.Reset*
   commentId: Overload:ASE_Assignment_Demo.AppCanvas.Reset
   href: ASE_Assignment_Demo.AppCanvas.html#ASE_Assignment_Demo_AppCanvas_Reset
   name: Reset
   nameWithType: AppCanvas.Reset
   fullName: ASE_Assignment_Demo.AppCanvas.Reset
-- uid: BOOSE.ICanvas.Reset
-  commentId: M:BOOSE.ICanvas.Reset
-  parent: BOOSE.ICanvas
-  isExternal: true
+- uid: ASE_Assignment_Demo.IAppCanvas.Reset
+  commentId: M:ASE_Assignment_Demo.IAppCanvas.Reset
+  parent: ASE_Assignment_Demo.IAppCanvas
+  href: ASE_Assignment_Demo.IAppCanvas.html#ASE_Assignment_Demo_IAppCanvas_Reset
   name: Reset()
-  nameWithType: ICanvas.Reset()
-  fullName: BOOSE.ICanvas.Reset()
+  nameWithType: IAppCanvas.Reset()
+  fullName: ASE_Assignment_Demo.IAppCanvas.Reset()
   spec.csharp:
-  - uid: BOOSE.ICanvas.Reset
+  - uid: ASE_Assignment_Demo.IAppCanvas.Reset
     name: Reset
-    isExternal: true
+    href: ASE_Assignment_Demo.IAppCanvas.html#ASE_Assignment_Demo_IAppCanvas_Reset
   - name: (
   - name: )
   spec.vb:
-  - uid: BOOSE.ICanvas.Reset
+  - uid: ASE_Assignment_Demo.IAppCanvas.Reset
     name: Reset
-    isExternal: true
+    href: ASE_Assignment_Demo.IAppCanvas.html#ASE_Assignment_Demo_IAppCanvas_Reset
   - name: (
   - name: )
 - uid: ASE_Assignment_Demo.AppCanvas.Set*
@@ -1321,70 +1343,27 @@ references:
   name: Set
   nameWithType: AppCanvas.Set
   fullName: ASE_Assignment_Demo.AppCanvas.Set
-- uid: BOOSE.ICanvas.Set(System.Int32,System.Int32)
-  commentId: M:BOOSE.ICanvas.Set(System.Int32,System.Int32)
-  parent: BOOSE.ICanvas
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.int32
-  name: Set(int, int)
-  nameWithType: ICanvas.Set(int, int)
-  fullName: BOOSE.ICanvas.Set(int, int)
-  nameWithType.vb: ICanvas.Set(Integer, Integer)
-  fullName.vb: BOOSE.ICanvas.Set(Integer, Integer)
-  name.vb: Set(Integer, Integer)
-  spec.csharp:
-  - uid: BOOSE.ICanvas.Set(System.Int32,System.Int32)
-    name: Set
-    isExternal: true
-  - name: (
-  - uid: System.Int32
-    name: int
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.int32
-  - name: ','
-  - name: " "
-  - uid: System.Int32
-    name: int
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.int32
-  - name: )
-  spec.vb:
-  - uid: BOOSE.ICanvas.Set(System.Int32,System.Int32)
-    name: Set
-    isExternal: true
-  - name: (
-  - uid: System.Int32
-    name: Integer
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.int32
-  - name: ','
-  - name: " "
-  - uid: System.Int32
-    name: Integer
-    isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.int32
-  - name: )
 - uid: ASE_Assignment_Demo.AppCanvas.SetColour*
   commentId: Overload:ASE_Assignment_Demo.AppCanvas.SetColour
   href: ASE_Assignment_Demo.AppCanvas.html#ASE_Assignment_Demo_AppCanvas_SetColour_System_Int32_System_Int32_System_Int32_
   name: SetColour
   nameWithType: AppCanvas.SetColour
   fullName: ASE_Assignment_Demo.AppCanvas.SetColour
-- uid: BOOSE.ICanvas.SetColour(System.Int32,System.Int32,System.Int32)
-  commentId: M:BOOSE.ICanvas.SetColour(System.Int32,System.Int32,System.Int32)
-  parent: BOOSE.ICanvas
+- uid: ASE_Assignment_Demo.IAppCanvas.SetColour(System.Int32,System.Int32,System.Int32)
+  commentId: M:ASE_Assignment_Demo.IAppCanvas.SetColour(System.Int32,System.Int32,System.Int32)
+  parent: ASE_Assignment_Demo.IAppCanvas
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.int32
+  href: ASE_Assignment_Demo.IAppCanvas.html#ASE_Assignment_Demo_IAppCanvas_SetColour_System_Int32_System_Int32_System_Int32_
   name: SetColour(int, int, int)
-  nameWithType: ICanvas.SetColour(int, int, int)
-  fullName: BOOSE.ICanvas.SetColour(int, int, int)
-  nameWithType.vb: ICanvas.SetColour(Integer, Integer, Integer)
-  fullName.vb: BOOSE.ICanvas.SetColour(Integer, Integer, Integer)
+  nameWithType: IAppCanvas.SetColour(int, int, int)
+  fullName: ASE_Assignment_Demo.IAppCanvas.SetColour(int, int, int)
+  nameWithType.vb: IAppCanvas.SetColour(Integer, Integer, Integer)
+  fullName.vb: ASE_Assignment_Demo.IAppCanvas.SetColour(Integer, Integer, Integer)
   name.vb: SetColour(Integer, Integer, Integer)
   spec.csharp:
-  - uid: BOOSE.ICanvas.SetColour(System.Int32,System.Int32,System.Int32)
+  - uid: ASE_Assignment_Demo.IAppCanvas.SetColour(System.Int32,System.Int32,System.Int32)
     name: SetColour
-    isExternal: true
+    href: ASE_Assignment_Demo.IAppCanvas.html#ASE_Assignment_Demo_IAppCanvas_SetColour_System_Int32_System_Int32_System_Int32_
   - name: (
   - uid: System.Int32
     name: int
@@ -1404,9 +1383,9 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: )
   spec.vb:
-  - uid: BOOSE.ICanvas.SetColour(System.Int32,System.Int32,System.Int32)
+  - uid: ASE_Assignment_Demo.IAppCanvas.SetColour(System.Int32,System.Int32,System.Int32)
     name: SetColour
-    isExternal: true
+    href: ASE_Assignment_Demo.IAppCanvas.html#ASE_Assignment_Demo_IAppCanvas_SetColour_System_Int32_System_Int32_System_Int32_
   - name: (
   - uid: System.Int32
     name: Integer
@@ -1431,6 +1410,34 @@ references:
   name: SetGraphics
   nameWithType: AppCanvas.SetGraphics
   fullName: ASE_Assignment_Demo.AppCanvas.SetGraphics
+- uid: ASE_Assignment_Demo.IAppCanvas.SetGraphics(System.Drawing.Graphics)
+  commentId: M:ASE_Assignment_Demo.IAppCanvas.SetGraphics(System.Drawing.Graphics)
+  parent: ASE_Assignment_Demo.IAppCanvas
+  isExternal: true
+  href: ASE_Assignment_Demo.IAppCanvas.html#ASE_Assignment_Demo_IAppCanvas_SetGraphics_System_Drawing_Graphics_
+  name: SetGraphics(Graphics)
+  nameWithType: IAppCanvas.SetGraphics(Graphics)
+  fullName: ASE_Assignment_Demo.IAppCanvas.SetGraphics(System.Drawing.Graphics)
+  spec.csharp:
+  - uid: ASE_Assignment_Demo.IAppCanvas.SetGraphics(System.Drawing.Graphics)
+    name: SetGraphics
+    href: ASE_Assignment_Demo.IAppCanvas.html#ASE_Assignment_Demo_IAppCanvas_SetGraphics_System_Drawing_Graphics_
+  - name: (
+  - uid: System.Drawing.Graphics
+    name: Graphics
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.graphics
+  - name: )
+  spec.vb:
+  - uid: ASE_Assignment_Demo.IAppCanvas.SetGraphics(System.Drawing.Graphics)
+    name: SetGraphics
+    href: ASE_Assignment_Demo.IAppCanvas.html#ASE_Assignment_Demo_IAppCanvas_SetGraphics_System_Drawing_Graphics_
+  - name: (
+  - uid: System.Drawing.Graphics
+    name: Graphics
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.drawing.graphics
+  - name: )
 - uid: System.Drawing.Graphics
   commentId: T:System.Drawing.Graphics
   parent: System.Drawing
@@ -1466,34 +1473,27 @@ references:
     name: Drawing
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.drawing
-- uid: System.NotImplementedException
-  commentId: T:System.NotImplementedException
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.notimplementedexception
-  name: NotImplementedException
-  nameWithType: NotImplementedException
-  fullName: System.NotImplementedException
 - uid: ASE_Assignment_Demo.AppCanvas.Tri*
   commentId: Overload:ASE_Assignment_Demo.AppCanvas.Tri
   href: ASE_Assignment_Demo.AppCanvas.html#ASE_Assignment_Demo_AppCanvas_Tri_System_Int32_System_Int32_
   name: Tri
   nameWithType: AppCanvas.Tri
   fullName: ASE_Assignment_Demo.AppCanvas.Tri
-- uid: BOOSE.ICanvas.Tri(System.Int32,System.Int32)
-  commentId: M:BOOSE.ICanvas.Tri(System.Int32,System.Int32)
-  parent: BOOSE.ICanvas
+- uid: ASE_Assignment_Demo.IAppCanvas.Tri(System.Int32,System.Int32)
+  commentId: M:ASE_Assignment_Demo.IAppCanvas.Tri(System.Int32,System.Int32)
+  parent: ASE_Assignment_Demo.IAppCanvas
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.int32
+  href: ASE_Assignment_Demo.IAppCanvas.html#ASE_Assignment_Demo_IAppCanvas_Tri_System_Int32_System_Int32_
   name: Tri(int, int)
-  nameWithType: ICanvas.Tri(int, int)
-  fullName: BOOSE.ICanvas.Tri(int, int)
-  nameWithType.vb: ICanvas.Tri(Integer, Integer)
-  fullName.vb: BOOSE.ICanvas.Tri(Integer, Integer)
+  nameWithType: IAppCanvas.Tri(int, int)
+  fullName: ASE_Assignment_Demo.IAppCanvas.Tri(int, int)
+  nameWithType.vb: IAppCanvas.Tri(Integer, Integer)
+  fullName.vb: ASE_Assignment_Demo.IAppCanvas.Tri(Integer, Integer)
   name.vb: Tri(Integer, Integer)
   spec.csharp:
-  - uid: BOOSE.ICanvas.Tri(System.Int32,System.Int32)
+  - uid: ASE_Assignment_Demo.IAppCanvas.Tri(System.Int32,System.Int32)
     name: Tri
-    isExternal: true
+    href: ASE_Assignment_Demo.IAppCanvas.html#ASE_Assignment_Demo_IAppCanvas_Tri_System_Int32_System_Int32_
   - name: (
   - uid: System.Int32
     name: int
@@ -1507,9 +1507,9 @@ references:
     href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: )
   spec.vb:
-  - uid: BOOSE.ICanvas.Tri(System.Int32,System.Int32)
+  - uid: ASE_Assignment_Demo.IAppCanvas.Tri(System.Int32,System.Int32)
     name: Tri
-    isExternal: true
+    href: ASE_Assignment_Demo.IAppCanvas.html#ASE_Assignment_Demo_IAppCanvas_Tri_System_Int32_System_Int32_
   - name: (
   - uid: System.Int32
     name: Integer
@@ -1522,54 +1522,55 @@ references:
     isExternal: true
     href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: )
-- uid: ASE_Assignment_Demo.AppCanvas.WriteText*
-  commentId: Overload:ASE_Assignment_Demo.AppCanvas.WriteText
-  href: ASE_Assignment_Demo.AppCanvas.html#ASE_Assignment_Demo_AppCanvas_WriteText_System_String_
-  name: WriteText
-  nameWithType: AppCanvas.WriteText
-  fullName: ASE_Assignment_Demo.AppCanvas.WriteText
-- uid: BOOSE.ICanvas.WriteText(System.String)
-  commentId: M:BOOSE.ICanvas.WriteText(System.String)
-  parent: BOOSE.ICanvas
+- uid: ASE_Assignment_Demo.AppCanvas.ValidatePosition*
+  commentId: Overload:ASE_Assignment_Demo.AppCanvas.ValidatePosition
+  href: ASE_Assignment_Demo.AppCanvas.html#ASE_Assignment_Demo_AppCanvas_ValidatePosition_System_Int32_System_Int32_
+  name: ValidatePosition
+  nameWithType: AppCanvas.ValidatePosition
+  fullName: ASE_Assignment_Demo.AppCanvas.ValidatePosition
+- uid: ASE_Assignment_Demo.IAppCanvas.ValidatePosition(System.Int32,System.Int32)
+  commentId: M:ASE_Assignment_Demo.IAppCanvas.ValidatePosition(System.Int32,System.Int32)
+  parent: ASE_Assignment_Demo.IAppCanvas
   isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: WriteText(string)
-  nameWithType: ICanvas.WriteText(string)
-  fullName: BOOSE.ICanvas.WriteText(string)
-  nameWithType.vb: ICanvas.WriteText(String)
-  fullName.vb: BOOSE.ICanvas.WriteText(String)
-  name.vb: WriteText(String)
+  href: ASE_Assignment_Demo.IAppCanvas.html#ASE_Assignment_Demo_IAppCanvas_ValidatePosition_System_Int32_System_Int32_
+  name: ValidatePosition(int, int)
+  nameWithType: IAppCanvas.ValidatePosition(int, int)
+  fullName: ASE_Assignment_Demo.IAppCanvas.ValidatePosition(int, int)
+  nameWithType.vb: IAppCanvas.ValidatePosition(Integer, Integer)
+  fullName.vb: ASE_Assignment_Demo.IAppCanvas.ValidatePosition(Integer, Integer)
+  name.vb: ValidatePosition(Integer, Integer)
   spec.csharp:
-  - uid: BOOSE.ICanvas.WriteText(System.String)
-    name: WriteText
-    isExternal: true
+  - uid: ASE_Assignment_Demo.IAppCanvas.ValidatePosition(System.Int32,System.Int32)
+    name: ValidatePosition
+    href: ASE_Assignment_Demo.IAppCanvas.html#ASE_Assignment_Demo_IAppCanvas_ValidatePosition_System_Int32_System_Int32_
   - name: (
-  - uid: System.String
-    name: string
+  - uid: System.Int32
+    name: int
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: )
   spec.vb:
-  - uid: BOOSE.ICanvas.WriteText(System.String)
-    name: WriteText
-    isExternal: true
+  - uid: ASE_Assignment_Demo.IAppCanvas.ValidatePosition(System.Int32,System.Int32)
+    name: ValidatePosition
+    href: ASE_Assignment_Demo.IAppCanvas.html#ASE_Assignment_Demo_IAppCanvas_ValidatePosition_System_Int32_System_Int32_
   - name: (
-  - uid: System.String
-    name: String
+  - uid: System.Int32
+    name: Integer
     isExternal: true
-    href: https://learn.microsoft.com/dotnet/api/system.string
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
   - name: )
-- uid: System.String
-  commentId: T:System.String
-  parent: System
-  isExternal: true
-  href: https://learn.microsoft.com/dotnet/api/system.string
-  name: string
-  nameWithType: string
-  fullName: string
-  nameWithType.vb: String
-  fullName.vb: String
-  name.vb: String
 - uid: ASE_Assignment_Demo.AppCanvas.Dispose*
   commentId: Overload:ASE_Assignment_Demo.AppCanvas.Dispose
   href: ASE_Assignment_Demo.AppCanvas.html#ASE_Assignment_Demo_AppCanvas_Dispose

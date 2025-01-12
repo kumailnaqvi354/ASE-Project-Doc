@@ -7,6 +7,11 @@
           "files": [
             "**/*.csproj"
           ]
+        }, {
+          "src": "..//ase-demo-assignment-kumailnaqvi354/ASEAssignmentDemo.Tests",
+          "files": [
+            "**/*.csproj"
+          ]
         }
       ],
       "dest": "api"
